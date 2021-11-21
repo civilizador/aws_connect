@@ -9,12 +9,25 @@ resource "aws_dynamodb_table" "aws_connect_DDB" {
     type = "S"
   }
   attribute {
-    name = "Name"
+    name = "name"
     type = "S"
   }
   attribute {
     name = "lastName"
     type = "S"
+  }
+  attribute {
+    name = "email"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "LastNameIndex"
+    hash_key           = "lastName"
+    range_key          = "email"
+    write_capacity     = 10
+    read_capacity      = 10
+    projection_type    = "INCLUDE"
+    non_key_attributes = ["name"]
   }
 
 }

@@ -21,7 +21,6 @@ resource "aws_vpc" "aws_connect" {
   cidr_block = "10.0.0.0/16"
 }
 
-
 # Create IAM ROLE for the Lambda function. 
 resource "aws_iam_role" "aws_lambda_dynamo_admin_role" {
   name               = "terraform_function_role"
