@@ -10,10 +10,6 @@ resource "aws_dynamodb_table" "aws_connect_DDB" {
     type = "S"
   }
   attribute {
-    name = "name"
-    type = "S"
-  }
-  attribute {
     name = "lastName"
     type = "S"
   }
@@ -28,7 +24,6 @@ resource "aws_dynamodb_table" "aws_connect_DDB" {
     write_capacity     = 10
     read_capacity      = 10
     projection_type    = "INCLUDE"
-    non_key_attributes = ["name"]
   }
 
 }
