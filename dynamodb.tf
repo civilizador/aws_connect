@@ -1,6 +1,7 @@
 resource "aws_dynamodb_table" "aws_connect_DDB" {
   name             = "contactDetails"
   hash_key         = "phoneNumber"
+  range_key        = "lastName"
   billing_mode   = "PROVISIONED"
   read_capacity  = 5
   write_capacity = 5
