@@ -1,8 +1,8 @@
-resource "aws_lex_bot" "sample_bot" {
+resource "aws_lex_bot" "schedule_appointment" {
   abort_statement {
     message {
-      content      = "Sorry, I am not able to assist at this time"
       content_type = "PlainText"
+      content      = "Sorry, I am not able to assist at this time"
     }
   }
 
@@ -12,22 +12,22 @@ resource "aws_lex_bot" "sample_bot" {
     max_attempts = 2
 
     message {
-      content      = "I didn't understand you, what would you like to do?"
       content_type = "PlainText"
+      content      = "I didn't understand you, what would you like me to do?"
     }
   }
 
-  create_version              = false
-  description                 = "Bot to place an order on the behalf of a user"
+  description                 = "Bot to book an appointment"
+  detect_sentiment            = false
   idle_session_ttl_in_seconds = 600
 
   intent {
-    intent_name    = "PlaceOrder"
-    intent_version = "1"
+    intent_name    = aws_lex_intent.make_appointment.name
+    intent_version = aws_lex_intent.make_appointment.version
   }
 
   locale           = "en-US"
-  name             = "PlaceOrder"
-  process_behavior = "BUILD"
+  name             = "ScheduleAppointment"
+  process_behavior = "SAVE"
   voice_id         = "Salli"
 }
